@@ -1,0 +1,2 @@
+javac -d bin -sourcepath src -cp /Users/sayat/Documents/edu/coursera/AlgoI/algo-i/libs/algs4.jar:/Users/sayat/Documents/edu/coursera/AlgoI/algo-i/libs/stdlib.jar src/Deque.java src/RandomizedQueue.java src/Subset.java
+echo "aa bb cc cc bb" | java -cp bin:/Users/sayat/Documents/edu/coursera/AlgoI/algo-i/libs/stdlib.jar Subset
