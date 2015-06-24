@@ -9,6 +9,9 @@ public class Percolation {
 
    // create N-by-N grid, with all sites blocked
    public Percolation(int N) {
+         if(N <= 0)
+            throw new IllegalArgumentException();
+
          this.N = N;
          int totalSize = N * N + 2;
          
@@ -88,6 +91,7 @@ public class Percolation {
    }
 
    // is site (row i, column j) full?
+   // buggy
    public boolean isFull(int i, int j) {
       validate(i, j);
       // if (!isOpen(i, j)) {
@@ -109,17 +113,20 @@ public class Percolation {
    }
 
    public static void main(String[] args) {
+      // In in = new In(args[0]);
       int n = Integer.valueOf(args[0]);
-
+      // int n = Integer.valueOf(in.readInt());
+      int i,j = 0;
       Percolation perc = new Percolation(n);
       for (int x = 1; x < n + 1; x++) {
-         // int i = StdRandom.uniform(n) +1 ,
-         //     j = StdRandom.uniform(n) +1;
+         // i = in.readInt();
+         // j = in.readInt();
         int i = x,
             j = 1;
+         // StdOut.println(i +" " +j);
          perc.open(i, j);
          if (perc.percolates()) {
-            System.out.println(String.format("Perconaltin %d. Grid: %d x %d", x, n, n));
+            StdOut.println(String.format("Perconaltin %d. Grid: %d x %d", x, n, n));
             break;
          }         
       }

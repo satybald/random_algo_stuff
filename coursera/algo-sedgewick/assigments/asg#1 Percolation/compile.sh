@@ -1,2 +1,4 @@
-javac -d bin -sourcepath src -cp lib/algs4.jar:lib/stdlib.jar src/Percolation.java src/PercolationStats.java
-java -cp bin:lib/algs4.jar:lib/stdlib.jar Percolation 10
+CWD="$(cd .. && pwd)"
+export CLASSPATH=target:$CWD/lib/stdlib.jar:$CWD/lib/algs4.jar
+javac -cp $CLASSPATH -d target -sourcepath src src/Percolation.java src/PercolationStats.java src/PercolationVisualizer.java src/InteractivePercolationVisualizer.java
+java -cp $CLASSPATH PercolationVisualizer resources/input20.txt
