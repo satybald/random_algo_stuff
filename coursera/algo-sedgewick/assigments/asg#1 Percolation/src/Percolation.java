@@ -9,7 +9,7 @@ public class Percolation {
 
    // create N-by-N grid, with all sites blocked
    public Percolation(int N) {
-         if(N <= 0)
+         if (N <= 0)
             throw new IllegalArgumentException();
 
          this.N = N;
@@ -116,13 +116,13 @@ public class Percolation {
       // In in = new In(args[0]);
       int n = Integer.valueOf(args[0]);
       // int n = Integer.valueOf(in.readInt());
-      int i,j = 0;
+      int i, j = 0;
       Percolation perc = new Percolation(n);
       for (int x = 1; x < n + 1; x++) {
          // i = in.readInt();
          // j = in.readInt();
-        int i = x,
-            j = 1;
+         i = x;
+         j = 1;
          // StdOut.println(i +" " +j);
          perc.open(i, j);
          if (perc.percolates()) {
@@ -130,6 +130,19 @@ public class Percolation {
             break;
          }         
       }
+
+      // Percolation backwash = new Percolation(4);
+      //   backwash.open(4, 1);
+      //   backwash.open(1, 3);
+      //   backwash.open(2, 3);
+      //   backwash.open(3, 3);
+      //   backwash.open(4, 3);
+
+
+      //   if (backwash.isFull(4, 1))
+      //       System.out.println("Failed backwash test!");
+      //   else
+      //       System.out.println("Backwash test passed");
    }
 
 }

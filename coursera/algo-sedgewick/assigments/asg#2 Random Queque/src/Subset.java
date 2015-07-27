@@ -1,30 +1,26 @@
-import java.util.Map;
-import java.util.HashMap;
+public class Subset {
+    private static int k = 0;
 
-class Subset{
-	private static Map<String, String> st;
+    public Subset() {
+        super();
+    }
 
-	Subset(){
-		st = new HashMap<String, String>();
-	}
-	public void put(String el){
-		st.put(el, "");
-	}
+    private static void print(RandomizedQueue set) {
+        for (int i = 0; i < k; i++) {
+            StdOut.println(set.dequeue());
+        }
+    }
 
-	public static void print(){
-		for (String key: st.keySet()){
-			StdOut.println(key+ " ");
-		}
-	}
+    public static void main(String[] args) {
+        RandomizedQueue set = new RandomizedQueue<String>();
+        k = Integer.parseInt(args[0]);
+        // StdOut.println(ch+" ");
 
-	public static void main(String[] args){
-		Subset set = new Subset();
+        while (!StdIn.isEmpty()) {
+            String ch = StdIn.readString();
+            set.enqueue(ch);
+        }
 
-		while(!StdIn.isEmpty()){
-			String ch = StdIn.readString();
-			set.put(ch);
-		}
-
-		print();
-	}
+        print(set);
+    }
 }
