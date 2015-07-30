@@ -27,16 +27,19 @@ public class Board {
 
     // sum of Manhattan distances between blocks and goal
     public int manhattan() {
-        int ii, jj, num = 0;
+        int ii, jj, num, result = 0;
         for (int i = 0; i < blocks.length; i++) {
             for (int j = 0; j < blocks[i].length; j++) {
                 num = blocks[i][j];
-                ii = num / N;
+                ii = num / N; // natural coords (ii, jj) for number.
                 jj = num - ii * N;
+                if (i != ii && j != jj && blocks[i][j] != 0) {
+                    result += Math.abs(i - ii) + Math.abs(j - jj);
+                }
             }
         }
 
-        return 0;
+        return result;
     }   
 
     private int matrixIds(int i, int j) {
