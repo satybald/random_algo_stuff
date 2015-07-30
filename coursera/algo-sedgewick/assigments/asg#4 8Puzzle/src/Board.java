@@ -3,8 +3,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Board {
-    private int[][] blocks;
-    private int N;
+    private final int[][] blocks;
+    private final int N;
+
+    private int manhattan = -1;
+    private int hammington = -1;
+
     // construct a board from an N-by-N array of blocks
     // (where blocks[i][j] = block in row i, column j)
     public Board(int[][] blocks) {
@@ -18,31 +22,37 @@ public class Board {
 
     // number of blocks out of place
     public int hamming() {
-        int result = 0;
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                if(blocks[i][j] != 0 && matrixIds(i, j) != blocks[i][j]){
-                    result++;
+        if (hammington == -1) {
+            hammington = 0;
+            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < N; j++) {
+                    if(blocks[i][j] != 0 && matrixIds(i, j) != blocks[i][j]){
+                        hammington++;
+                    }
                 }
             }
-        }
-        return result;
+        } 
+
+        return hammington;
     }
 
     // sum of Manhattan distances between blocks and goal
     public int manhattan() {
-        int ii, jj, num, result = 0;
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                num = blocks[i][j];
-                ii = (int) (num - 1) / N; // natural coords (ii, jj) for number.
-                jj = num - ii * N - 1;
-                if ((i != ii || j != jj) && blocks[i][j] != 0) {
-                    result += Math.abs(i - ii) + Math.abs(j - jj);
+        if (manhattan == -1){
+            manhattan = 0;
+            int ii, jj, num = 0;
+            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < N; j++) {
+                    num = blocks[i][j];
+                    ii = (int) (num - 1) / N; // natural coords (ii, jj) for number.
+                    jj = num - ii * N - 1;
+                    if ((i != ii || j != jj) && blocks[i][j] != 0) {
+                        manhattan += Math.abs(i - ii) + Math.abs(j - jj);
+                    }
                 }
-            }
+            }    
         }
-        return result;
+        return manhattan;
     }   
 
     private int matrixIds(int i, int j) {
@@ -62,16 +72,33 @@ public class Board {
                 }
             }
         }
-
         return true;
     }
-    // a board that is obtained by exchanging two adjacent blocks in the same row
+
+    /** a board that is obtained by exchanging two adjacent blocks in the same row
+    * http://coursera.cs.princeton.edu/algs4/checklists/8puzzle.html
+    * You will use it to determine whether a puzzle is solvable: exactly one of a board and its twin are solvable. 
+    * A twin is obtained by swapping two adjacent blocks (the blank does not count) in the same row. 
+    * For example, here is a board and its 5 possible twins. Your solver will use only one twin.
+    **/
     public Board twin() {
+        // Arrays.deepHashCode()
         return null;
     }
+
     // does this board equal y?
     public boolean equals(Object y) {
-        return false;
+        if (y == this) return true;
+        if (y == null) return false;
+        if (y.getClass() != this.getClass()) return false;
+        Board that = (Board) y;
+        if (this.blocks.length != that.blocks.length) return false;
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (this.blocks[i][j] != that.blocks[i][j]) return false;
+            }
+        }
+        return true;
     }
 
     private int[][] deepCopy(int i, int j, int ii, int jj) {
@@ -98,8 +125,9 @@ public class Board {
                 }
             }
         }
-        int ii = i; int jj = j;
-        System.out.println("ii: " + ii + " jj: "+jj);
+        final int ii = i; 
+        final int jj = j;
+        // System.out.println("ii: " + ii + " jj: "+jj);
 
         return new Iterable<Board>() {
             private ArrayList<Board> board = new ArrayList<>();
@@ -135,6 +163,7 @@ public class Board {
 
     public String toString() {
         StringBuilder build = new StringBuilder();
+        build.append(N + "\n");
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 if (blocks[i][j] != 0)

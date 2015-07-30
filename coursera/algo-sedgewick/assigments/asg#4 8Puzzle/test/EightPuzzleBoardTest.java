@@ -134,5 +134,22 @@ public class EightPuzzleBoardTest{
 			System.out.println(b);
 		}
 	}	
-
+	
+	@Test
+	public void testEnque10(){
+		int[][] array1 = {{1, 2, 3}, {4, 0, 5},{7, 8, 6}};
+		int[][] array2 = {{1, 2, 3}, {4, 0, 5},{7, 8, 6}};
+		Board board = new Board(array1);
+		Board board2 = new Board(array2);
+		assertTrue(board.equals(board2));
+	}	
+	
+	@Test
+	public void testEnque11(){
+		int[][] array1 = {{2, 1, 3}, {4, 0, 5},{7, 8, 6}};
+		int[][] array2 = {{1, 2, 3}, {4, 0, 5},{7, 8, 6}};
+		Board board = new Board(array1);
+		Board board2 = new Board(array2);
+		assertFalse(board.equals(board2));
+	}
 }
