@@ -31,7 +31,7 @@ public class EightPuzzleBoardTest{
 		Board board = new Board(array);
 
 		assertEquals("hamington", 5, board.hamming());
-		assertEquals("manhattan", 15, board.manhattan());
+		assertEquals("manhattan", 10, board.manhattan());
 	}
 
 	@Test
@@ -44,7 +44,7 @@ public class EightPuzzleBoardTest{
 		Board board = new Board(array);
 
 		assertEquals("hamington", 8, board.hamming());
-		assertEquals("manhattan", 14, board.manhattan());
+		assertEquals("manhattan", 11, board.manhattan());
 	}
 
 	@Test
@@ -60,9 +60,4 @@ public class EightPuzzleBoardTest{
 		assertEquals("manhattan", 10, board.manhattan());
 	}	
 
-	// @Test(expected=NoSuchElementException.class) 
-	// public void testNPEEn2(){
-	// 	// RandomizedQueue<Integer> rq = new RandomizedQueue<>();
-	// 	// rq.dequeue();
-	// }
 }

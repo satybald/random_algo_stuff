@@ -31,14 +31,13 @@ public class Board {
         for (int i = 0; i < blocks.length; i++) {
             for (int j = 0; j < blocks[i].length; j++) {
                 num = blocks[i][j];
-                ii = num / N; // natural coords (ii, jj) for number.
-                jj = num - ii * N;
-                if (i != ii && j != jj && blocks[i][j] != 0) {
+                ii = (int) (num - 1) / N; // natural coords (ii, jj) for number.
+                jj = num - ii * N - 1;
+                if ((i != ii || j != jj) && blocks[i][j] != 0) {
                     result += Math.abs(i - ii) + Math.abs(j - jj);
                 }
             }
         }
-
         return result;
     }   
 
