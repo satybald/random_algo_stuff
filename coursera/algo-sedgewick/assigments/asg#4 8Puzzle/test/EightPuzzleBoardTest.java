@@ -3,8 +3,6 @@ import org.junit.Test;
 import org.junit.Assert;
 import java.util.NoSuchElementException;
 
-
-
 public class EightPuzzleBoardTest{
 
 	@Test
