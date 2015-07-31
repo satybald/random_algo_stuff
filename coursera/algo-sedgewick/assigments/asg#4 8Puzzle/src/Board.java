@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 public class Board {
     private final int[][] blocks;
+    private final int[] block;
     private final int N;
 
     private int manhattan = -1;
@@ -14,6 +15,12 @@ public class Board {
     public Board(int[][] blocks) {
         this.blocks = blocks;
         this.N = blocks.length;
+        this.block = new int[N * N];
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                this.block[j + i * N] = blocks[i][j];
+            }
+        }
     }
     // board dimension N
     public int dimension() {
@@ -83,6 +90,7 @@ public class Board {
     **/
     public Board twin() {
         // Arrays.deepHashCode()
+        //swap inverse 
         return null;
     }
 
@@ -99,6 +107,14 @@ public class Board {
             }
         }
         return true;
+    }
+
+    /* is the initial board solvable?
+     * https://www.cs.bham.ac.uk/~mdr/teaching/modules04/java2/TilesSolvability.html
+     */
+    public boolean isSolvable() {
+        System.out.println(initial.blocks);
+        return false;
     }
 
     private int[][] deepCopy(int i, int j, int ii, int jj) {
